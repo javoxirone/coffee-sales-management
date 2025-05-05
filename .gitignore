@@ -1,0 +1,37 @@
+ Byte-compiled files
+__pycache__/
+*.py[cod]
+
+ Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+dist/
+build/
+
+ Flask instance folder
+instance/
+
+ IDE specific files
+.idea/
+.vscode/
+*.swp
+
+ Environment variables
+.env
+*.env
+
+ Logs
+*.log
+
+ Database files
+*.sqlite3
+
+ Other
+*.db
+*.DS_Store
+Thumbs.db

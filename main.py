@@ -60,7 +60,7 @@ def validate_sale_data(data: Dict[str, Any]) -> Dict[str, Any]:
     return processed_data
 
 
-@app.route('/api/sales', methods=['GET'])
+@app.route('/add_student/api/sales', methods=['GET'])
 def get_sales():
     """Get all sales or filter by query parameters"""
     # Extract query parameters
@@ -113,7 +113,7 @@ def get_sales():
             conn.close()
 
 
-@app.route('/api/sales/<int:sale_id>', methods=['GET'])
+@app.route('/add_student/api/sales/<int:sale_id>', methods=['GET'])
 def get_sale(sale_id):
     """Get a single sale by ID"""
     try:
@@ -142,7 +142,7 @@ def get_sale(sale_id):
             conn.close()
 
 
-@app.route('/api/sales', methods=['POST'])
+@app.route('/add_student/api/sales', methods=['POST'])
 def add_sale():
     """Add a new sale record"""
     if not request.is_json:
@@ -201,7 +201,7 @@ def add_sale():
             conn.close()
 
 
-@app.route('/api/sales/<int:sale_id>', methods=['PUT'])
+@app.route('/add_student/api/sales/<int:sale_id>', methods=['PUT'])
 def update_sale(sale_id):
     """Update an existing sale record"""
     if not request.is_json:
@@ -267,7 +267,7 @@ def update_sale(sale_id):
             conn.close()
 
 
-@app.route('/api/sales/delete-by-date', methods=['DELETE'])
+@app.route('/add_student/api/sales/delete-by-date', methods=['DELETE'])
 def delete_sale_by_datetime():
     """Delete a sale record based on datetime"""
     try:
@@ -309,7 +309,7 @@ def delete_sale_by_datetime():
     finally:
         if conn:
             conn.close()
-@app.route('/api/sales/<int:sale_id>', methods=['DELETE'])
+@app.route('/add_student/api/sales/<int:sale_id>', methods=['DELETE'])
 def delete_sale(sale_id):
     """Delete a sale record"""
     try:
@@ -341,7 +341,7 @@ def delete_sale(sale_id):
             conn.close()
 
 
-@app.route('/api/sales/bulk', methods=['POST'])
+@app.route('/add_student/api/sales/bulk', methods=['POST'])
 def bulk_add_sales():
     """Add multiple sale records in a single request"""
     if not request.is_json:
@@ -406,7 +406,7 @@ def bulk_add_sales():
             conn.close()
 
 # Fix for get_coffee_stats() function in the backend
-@app.route('/api/stats/coffee', methods=['GET'])
+@app.route('/add_student/api/stats/coffee', methods=['GET'])
 def get_coffee_stats():
     """Get statistics about coffee sales"""
     try:
@@ -440,7 +440,7 @@ def get_coffee_stats():
             conn.close()
 
 # Fix for get_daily_stats() function too (has the same issue)
-@app.route('/api/stats/daily', methods=['GET'])
+@app.route('/add_student/api/stats/daily', methods=['GET'])
 def get_daily_stats():
     """Get daily sales statistics"""
     try:

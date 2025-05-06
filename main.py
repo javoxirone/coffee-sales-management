@@ -267,6 +267,48 @@ def update_sale(sale_id):
             conn.close()
 
 
+@app.route('/api/sales/delete-by-date', methods=['DELETE'])
+def delete_sale_by_datetime():
+    """Delete a sale record based on datetime"""
+    try:
+        # Get the datetime from request parameters
+        sale_date = request.args.get('datetime')
+
+        if not sale_date:
+            return jsonify({
+                "success": False,
+                "error": "Missing datetime parameter"
+            }), 400
+
+        conn = get_db_connection()
+        with conn.cursor() as cur:
+            # Check if record exists with the given datetime
+            cur.execute("SELECT id FROM tbl_javohir_sales WHERE sale_date = %s", (sale_date,))
+            records = cur.fetchall()
+
+            if not records:
+                return jsonify({
+                    "success": False,
+                    "error": f"No sales found with datetime {sale_date}"
+                }), 404
+
+            # Delete record(s) with the given datetime
+            cur.execute("DELETE FROM tbl_javohir_sales WHERE sale_date = %s", (sale_date,))
+            deleted_count = cur.rowcount
+            conn.commit()
+
+            return jsonify({
+                "success": True,
+                "message": f"{deleted_count} sale(s) with datetime {sale_date} deleted successfully"
+            })
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+    finally:
+        if conn:
+            conn.close()
 @app.route('/api/sales/<int:sale_id>', methods=['DELETE'])
 def delete_sale(sale_id):
     """Delete a sale record"""
